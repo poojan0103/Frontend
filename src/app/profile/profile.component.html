@@ -1,0 +1,35 @@
+<table  *ngIf="userdetails" class="table-primary">
+    <thead>
+        <tr>
+        <th colspan="2" >Your Profile</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Name : {{userdetails.name}}</td>
+        </tr>
+        <tr>
+            <td>Email : {{userdetails.email}}</td>
+            
+        </tr> 
+        <tr>
+            <td>Gender : {{userdetails.gender}}</td>
+        </tr>
+        <tr>
+        <td>Phone : {{userdetails.phone}}</td>
+    </tr>
+    <tr>
+        <td>Points : {{userdetails.points}}</td>
+    </tr>
+    <tr>
+        <td>Survey : {{userdetails.totalsurvey}}</td>
+    </tr>
+    
+    
+
+    </tbody>
+    
+</table>
+<button type="submit" (click)="back()">Back</button>
+<button type="submit" (click)="onLogout()">Logout</button>
+<button type="reset" (click)="redem()">Redeem Points</button>

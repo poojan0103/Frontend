@@ -1,0 +1,34 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="pannel border bg-white">
+                    <div class="pannel-heading">
+                        <h3 class="pt-3 font-weight-bold">Login</h3>
+                    </div>
+                    <form #loginForm="ngForm">
+                        
+                       
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-envelope p-2"></span>
+                                <input type="text" ngModel name="email"  placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-lock p-2"></span>
+                                <input [type]="type" ngModel name="password" placeholder="Password" required>
+                                <span (click)="hideshow()" class="fa {{eyeicon}}"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="loginUser(loginForm)">Login</button>
+                        <div class="text-center pt-4 text-muted">Don't have a account?<a id="login" routerLink="/signup" >Signup</a></div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

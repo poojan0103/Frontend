@@ -1,0 +1,22 @@
+<form [formGroup]="questionForm">
+    <div class="container">
+        <h2>Questions Page {{ currentPage }}</h2>
+      </div>
+     
+      <div class="name" *ngFor="let question of questions.slice((currentPage - 1) * 2, currentPage * 2)">
+        <h3>
+          <p>{{ question.text }}</p>
+        </h3>
+  
+        <input [type]="question.type === 'number' ? 'number' : 'text'" [formControlName]="(question.id)" size="20">
+       
+      </div>
+      
+      <div class="name">
+        <button *ngIf="currentPage > 1" (click)="onpreviousPage()">Previous</button>
+        <button *ngIf="(currentPage * questionsPerPage) < questions.length" (click)="onnextPage()" >Next</button>
+        <button *ngIf="(currentPage * questionsPerPage) >= questions.length" (click)="onFinish()" >Finish </button>
+      </div>
+   
+  
+</form>

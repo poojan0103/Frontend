@@ -1,0 +1,38 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="details">
+            <table *ngIf="userdetails">
+                
+                <tbody>
+                    <tr>
+                        <td> <h2>{{userdetails.name.split(' ')[0]}}</h2></td>
+
+                        
+                        <span class="fa fa-gear p-2" (click)="detail()"></span>
+                        
+                        
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+        
+        </div>
+        
+            <ng-container *ngFor="let item of survey" >
+                <div class="card col-md-3" (click)="navigate(item.points,item._id)"> 
+                    <mat-card-content >
+                        <mat-card  matRipple class="clickable" >Name:{{item.name}}</mat-card><br>
+                        <mat-card-subtitle > Points:{{item.points}} </mat-card-subtitle>
+                       
+                    
+                        
+                </mat-card-content>
+                </div>
+            </ng-container>
+        
+        
+        </div>
+
+        

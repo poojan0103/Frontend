@@ -1,0 +1,13 @@
+.card{
+    padding: 20px;
+    margin: 30px;
+    border-color: aqua;
+}
+.container{
+    margin-top: 10px;
+    background-color: cadetblue;
+}
+.details{
+margin-left: 85%;
+color:black;
+}
