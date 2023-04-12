@@ -139,5 +139,18 @@ export class QuestionComponent implements OnInit {
       .subscribe((data) => {});
     localStorage.removeItem('currentPage');
   }
+  isValid() {
+    const startIndex = (this.currentPage - 1) *  this.questionsPerPage;
+    const endIndex = startIndex + this.questionsPerPage;
+    const pageQuestions = this.questions.slice(startIndex, endIndex);
+    let valid = true
+    pageQuestions.forEach((question: { id: any; }) => {
+      if (!this.questionForm.get(`${question.id}`)?.value) {
+        valid = false
+      }
+    });
+    return valid
+   
+  }
   
 }

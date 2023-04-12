@@ -13,9 +13,9 @@
       </div>
       
       <div class="name">
-        <button *ngIf="currentPage > 1" (click)="onpreviousPage()">Previous</button>
-        <button *ngIf="(currentPage * questionsPerPage) < questions.length" (click)="onnextPage()" >Next</button>
-        <button *ngIf="(currentPage * questionsPerPage) >= questions.length" (click)="onFinish()" >Finish </button>
+        <button *ngIf="currentPage > 1" (click)="onpreviousPage()" >Previous</button>
+        <button *ngIf="(currentPage * questionsPerPage) < questions.length" (click)="onnextPage()" [disabled]='!isValid()'>Next</button>
+        <button *ngIf="(currentPage * questionsPerPage) >= questions.length" (click)="onFinish()" [disabled]='!isValid()' >Finish </button>
       </div>
    
   
