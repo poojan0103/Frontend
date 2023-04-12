@@ -27,7 +27,7 @@ export class SignupComponent {
   }
   signupUser(data: NgForm) {
     if (data.invalid) {
-      this.toastr.error('Pelase fill All Details', undefined, {
+      this.toastr.error('Please fill All Details', undefined, {
         timeOut: 2000,
         closeButton: true,
         progressBar: true,
@@ -40,7 +40,7 @@ export class SignupComponent {
       console.log(res);
 
       if (res.user === undefined) {
-        this.toastr.error('Pelase Check your information ', undefined, {
+        this.toastr.error('Please Check your information ', undefined, {
           timeOut: 2000,
           closeButton: true,
           progressBar: true,

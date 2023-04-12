@@ -15,11 +15,11 @@ export class QuestionComponent implements OnInit {
   survey: any;
   questionsPerPage: number = 2;
   update = false;
-   startIndex = (this.currentPage - 1) * this.questionsPerPage;
-   endIndex = this.startIndex + this.questionsPerPage;
+  startIndex = (this.currentPage - 1) * this.questionsPerPage;
+  endIndex = this.startIndex + this.questionsPerPage;
   //  pageQuestions = this.questions.slice(startIndex, endIndex);
-  
-   constructor(
+
+  constructor(
     private sevice: ProjectService,
     private fb: FormBuilder,
     private router: Router,
@@ -51,52 +51,23 @@ export class QuestionComponent implements OnInit {
     });
   }
   onpreviousPage() {
-    let formProgress = {
-      answers: this.questionForm.value,
-    };
-
+  
+    this.storeAnswer();
     localStorage.setItem('currentPage', JSON.stringify(this.currentPage - 1));
     this.currentPage--;
-    localStorage.setItem('formProgress', JSON.stringify(formProgress));
+  
   }
   onnextPage() {
-    const user = localStorage.getItem('id');
-    const survey = localStorage.getItem('survey');
+    this.storeFormProgress();
+    this.storeAnswer();
 
-    // const startIndex = (this.currentPage - 1) * this.questionsPerPage;
-    // const endIndex = startIndex + this.questionsPerPage;
-    const pageQuestions = this.questions.slice(this.startIndex, this.endIndex);
-    const pageAnswers: any = {};
+    this.storage();
 
-    pageQuestions.forEach((question: { id: any }) => {
-      pageAnswers[`${question.id}`] = this.questionForm.get(
-        `${question.id}`
-      )?.value;
-    });
-
-    let formProgress = {
-      answers: this.questionForm.value,
-    };
-
-    localStorage.setItem('currentPage', JSON.stringify(this.currentPage + 1));
-    const form = localStorage.setItem(
-      'formProgress',
-      JSON.stringify(formProgress)
-    );
     this.currentPage++;
-
-    this.sevice
-      .storeAnswer({ answer: pageAnswers, user, survey })
-      .subscribe((data) => {
-        localStorage.setItem('ansid', data._id);
-      });
   }
 
   onFinish() {
-    let formProgress = {
-      answers: this.questionForm.value,
-    };
-    localStorage.setItem('formProgress', JSON.stringify(formProgress));
+    this.storeFormProgress();
     const points = localStorage.getItem('surveyid');
     const id = localStorage.getItem('id');
     const data = {
@@ -111,10 +82,29 @@ export class QuestionComponent implements OnInit {
     });
 
     this.router.navigateByUrl('/dashboard');
+    this.storeAnswer();
 
+    localStorage.removeItem('currentPage');
+  }
+  isValid() {
     const startIndex = (this.currentPage - 1) * this.questionsPerPage;
     const endIndex = startIndex + this.questionsPerPage;
-    const pageQuestions = this.questions.slice(startIndex,endIndex);
+    const pageQuestions = this.questions.slice(startIndex, endIndex);
+    let valid = true;
+    pageQuestions.forEach((question: { id: any }) => {
+      if (!this.questionForm.get(`${question.id}`)?.value) {
+        valid = false;
+      }
+    });
+    return valid;
+  }
+  storage() {
+    localStorage.setItem('currentPage', JSON.stringify(this.currentPage + 1));
+  }
+  storeAnswer() {
+    const startIndex = (this.currentPage - 1) * this.questionsPerPage;
+    const endIndex = startIndex + this.questionsPerPage;
+    const pageQuestions = this.questions.slice(startIndex, endIndex);
     const pageAnswers: any = {};
     pageQuestions.forEach((question: { id: any }) => {
       pageAnswers[`${question.id}`] = this.questionForm.get(
@@ -126,20 +116,12 @@ export class QuestionComponent implements OnInit {
     this.sevice
       .storeAnswer({ answer: pageAnswers, user, survey })
       .subscribe((data) => {});
-    localStorage.removeItem('currentPage');
-  }
-  isValid() {
-    const startIndex = (this.currentPage - 1) *  this.questionsPerPage;
-    const endIndex = startIndex + this.questionsPerPage;
-    const pageQuestions = this.questions.slice(startIndex, endIndex);
-    let valid = true
-    pageQuestions.forEach((question: { id: any; }) => {
-      if (!this.questionForm.get(`${question.id}`)?.value) {
-        valid = false
-      }
-    });
-    return valid
    
   }
-  
+  storeFormProgress() {
+    let formProgress = {
+      answers: this.questionForm.value,
+    };
+    localStorage.setItem('formProgress', JSON.stringify(formProgress));
+  }
 }
