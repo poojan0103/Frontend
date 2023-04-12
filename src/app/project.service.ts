@@ -19,7 +19,7 @@ export class ProjectService {
     return this.http.post(` ${this.baseUrl}/login`,data)
   }
   public listSurvey():Observable<any>{
-    return this.http.get(`${this.baseUrl}/getsurvey`)
+    return this.http.get(`${this.baseUrl}/survey`)
   }
   public getProfile():Observable<any>{
     return this.http.get(`${this.baseUrl}/profile`)
@@ -36,7 +36,7 @@ export class ProjectService {
     return this.http.put(`${this.baseUrl}/answer/${id}`, answer);
   }
   public questions(survey:any):Observable<any>{
-    return this.http.get(`${this.baseUrl}/questionget/${survey}`)
+    return this.http.get(`${this.baseUrl}/question/${survey}`)
   }
  
 
