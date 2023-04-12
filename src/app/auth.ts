@@ -22,7 +22,7 @@ export class Auth implements HttpInterceptor{
                     err => {
                         if(err.error.auth==false) {
                             this.router.navigateByUrl('/login')
-                            // console.log("navigate to login")
+                            
                             }
                     })
                 );

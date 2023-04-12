@@ -15,7 +15,11 @@ export class QuestionComponent implements OnInit {
   survey: any;
   questionsPerPage: number = 2;
   update = false;
-  constructor(
+   startIndex = (this.currentPage - 1) * this.questionsPerPage;
+   endIndex = this.startIndex + this.questionsPerPage;
+  //  pageQuestions = this.questions.slice(startIndex, endIndex);
+  
+   constructor(
     private sevice: ProjectService,
     private fb: FormBuilder,
     private router: Router,
@@ -59,10 +63,11 @@ export class QuestionComponent implements OnInit {
     const user = localStorage.getItem('id');
     const survey = localStorage.getItem('survey');
 
-    const startIndex = (this.currentPage - 1) * this.questionsPerPage;
-    const endIndex = startIndex + this.questionsPerPage;
-    const pageQuestions = this.questions.slice(startIndex, endIndex);
+    // const startIndex = (this.currentPage - 1) * this.questionsPerPage;
+    // const endIndex = startIndex + this.questionsPerPage;
+    const pageQuestions = this.questions.slice(this.startIndex, this.endIndex);
     const pageAnswers: any = {};
+
     pageQuestions.forEach((question: { id: any }) => {
       pageAnswers[`${question.id}`] = this.questionForm.get(
         `${question.id}`
@@ -80,13 +85,6 @@ export class QuestionComponent implements OnInit {
     );
     this.currentPage++;
 
-    let get: any;
-    get = localStorage.getItem('formProgress')
-      ? localStorage.getItem('formProgress')
-      : '';
-
-    get = get ? JSON.parse(get) : '';
-
     this.sevice
       .storeAnswer({ answer: pageAnswers, user, survey })
       .subscribe((data) => {
@@ -99,17 +97,8 @@ export class QuestionComponent implements OnInit {
       answers: this.questionForm.value,
     };
     localStorage.setItem('formProgress', JSON.stringify(formProgress));
-    let get = localStorage.getItem('formProgress')
-      ? localStorage.getItem('formProgress')
-      : '';
-    get = get ? JSON.parse(get) : '';
-
-    const answer = get;
-
     const points = localStorage.getItem('surveyid');
-
     const id = localStorage.getItem('id');
-
     const data = {
       points,
       id,
@@ -125,7 +114,7 @@ export class QuestionComponent implements OnInit {
 
     const startIndex = (this.currentPage - 1) * this.questionsPerPage;
     const endIndex = startIndex + this.questionsPerPage;
-    const pageQuestions = this.questions.slice(startIndex, endIndex);
+    const pageQuestions = this.questions.slice(startIndex,endIndex);
     const pageAnswers: any = {};
     pageQuestions.forEach((question: { id: any }) => {
       pageAnswers[`${question.id}`] = this.questionForm.get(

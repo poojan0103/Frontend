@@ -6,46 +6,42 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
   
-  noAuthHeader = {
-    headers: new Headers({
-      'NoAuth': 'True'
-    })
-  };
+
   result = {}
-  // points = 0
-  
+ 
+  baseUrl = 'http://localhost:3000'
   constructor(private http:HttpClient) { }
   public signupUser(data:any):Observable<any>{
-    return this.http.post(' http://localhost:3000/signup',data);
+    return this.http.post(`${this.baseUrl}/signup`,data);
   }
   
   public loginUser(data:any):Observable<any>{
-    return this.http.post(' http://localhost:3000/login',data)
+    return this.http.post(` ${this.baseUrl}/login`,data)
   }
   public listSurvey():Observable<any>{
-    return this.http.get('  http://localhost:3000/get')
+    return this.http.get(`${this.baseUrl}/getsurvey`)
   }
   public getProfile():Observable<any>{
-    return this.http.get('http://localhost:3000/profile')
+    return this.http.get(`${this.baseUrl}/profile`)
   }
   public updatePoints(data:any):Observable<any>{
   
-    return this.http.post('http://localhost:3000/points',data)
+    return this.http.post(`${this.baseUrl}/points`,data)
   }
   public redemPoints(data:any):Observable<any>{
-    return this.http.post('http://localhost:3000/redem',data)
+    return this.http.post(`${this.baseUrl}/redem`,data)
   }
- 
   public updateAnswers(answer: any, id: any):Observable<any>{
-    return this.http.put(`http://localhost:3000/answer/${id}`, answer);
+    
+    return this.http.put(`${this.baseUrl}/answer/${id}`, answer);
   }
   public questions(survey:any):Observable<any>{
-    return this.http.get(`http://localhost:3000/qget/${survey}`)
+    return this.http.get(`${this.baseUrl}/questionget/${survey}`)
   }
  
 
   public storeAnswer(data:any):Observable<any>{
-    return this.http.post('http://localhost:3000/ans',data)
+    return this.http.post(`${this.baseUrl}/answer`,data)
   }
   
   setToken(token:string){
