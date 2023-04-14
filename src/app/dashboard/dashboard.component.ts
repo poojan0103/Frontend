@@ -8,8 +8,8 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  survey: any;
-  userdetails: any;
+  public survey: any;
+  public userdetails: any;
   constructor(private router: Router, private service: ProjectService) {}
   ngOnInit(): void {
     this.getprofiile();
@@ -22,9 +22,23 @@ export class DashboardComponent implements OnInit {
     });
   }
   navigate(surveyid: any, survey: any) {
-    localStorage.setItem('surveyid', surveyid);
-    localStorage.setItem('survey', survey);
-    this.router.navigate(['/question']);
+   const user = localStorage.getItem('id')
+    this.service.isSurveyTaken(user,survey).subscribe((isTaken)=>{
+      console.log(isTaken.message);
+      // debugger
+      if(isTaken.message == 'survey already taken'){
+        alert('you give this survey')
+      }
+      else{
+        
+        localStorage.setItem('surveyid', surveyid);
+        localStorage.setItem('survey', survey);
+        this.router.navigate(['/question']);
+      }
+    })
+  
+    
+  
   }
   getprofiile() {
     this.service.getProfile().subscribe((data) => {
@@ -36,4 +50,5 @@ export class DashboardComponent implements OnInit {
   detail() {
     this.router.navigateByUrl('/profile');
   }
+
 }

@@ -38,8 +38,9 @@ export class ProjectService {
   public questions(survey:any):Observable<any>{
     return this.http.get(`${this.baseUrl}/question/${survey}`)
   }
- 
-
+  public isSurveyTaken(user:any,survey:any):Observable<any>{
+    return this.http.get(`${this.baseUrl}/survey/${user}/${survey}`)
+  }
   public storeAnswer(data:any):Observable<any>{
     return this.http.post(`${this.baseUrl}/answer`,data)
   }

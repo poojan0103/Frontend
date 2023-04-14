@@ -9,15 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements OnInit {
-  questions: any;
-  questionForm!: FormGroup;
-  currentPage: number = 1;
-  survey: any;
-  questionsPerPage: number = 2;
-  update = false;
-  startIndex = (this.currentPage - 1) * this.questionsPerPage;
-  endIndex = this.startIndex + this.questionsPerPage;
-  //  pageQuestions = this.questions.slice(startIndex, endIndex);
+ public questions: any;
+ public questionForm!: FormGroup;
+ public currentPage: number = 1;
+ public survey: any;
+ public questionsPerPage: number = 2;
+  
+  
+  
 
   constructor(
     private sevice: ProjectService,
@@ -67,6 +66,7 @@ export class QuestionComponent implements OnInit {
   }
 
   onFinish() {
+    
     this.storeFormProgress();
     const points = localStorage.getItem('surveyid');
     const id = localStorage.getItem('id');
@@ -80,10 +80,11 @@ export class QuestionComponent implements OnInit {
       closeButton: true,
       progressBar: true,
     });
-
+    
     this.router.navigateByUrl('/dashboard');
     this.storeAnswer();
-
+    
+    
     localStorage.removeItem('currentPage');
   }
   isValid() {
@@ -116,6 +117,7 @@ export class QuestionComponent implements OnInit {
     this.sevice
       .storeAnswer({ answer: pageAnswers, user, survey })
       .subscribe((data) => {});
+
    
   }
   storeFormProgress() {

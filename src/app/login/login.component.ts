@@ -24,6 +24,7 @@ export class LoginComponent {
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
   loginUser(data: NgForm) {
+    
     if (data.invalid) {
       this.toastr.error('Invalid Credentails', undefined, {
         positionClass: 'toast-top-center',
@@ -34,12 +35,13 @@ export class LoginComponent {
     }
     this.service.loginUser(data.value).subscribe((res) => {
       this.service.setToken(res.token);
-
-      if (res.user === undefined) {
+          if (res.user === undefined) {
         this.toastr.error('Invalid Credentails', undefined, {
           positionClass: 'toast-top-center',
         });
-      } else {
+      } 
+      
+      else {
         this.router.navigate(['/dashboard']);
 
         this.toastr.success('Login Successfully', undefined, {

@@ -10,9 +10,8 @@ import { Route, Router } from '@angular/router';
 export class Auth implements HttpInterceptor{
     constructor(private service:ProjectService,private router:Router ){}
     intercept(req:HttpRequest<any>, next:HttpHandler) {
-        if(req.headers.get('noauth'))
-        return next.handle(req.clone());
-        else {
+       
+        
             const clonedreq = req.clone({
                 headers:req.headers.set("Authorization","Bearer "+this.service.getToken())
             });
@@ -27,7 +26,7 @@ export class Auth implements HttpInterceptor{
                     })
                 );
             }
-        }
+        
     }
 
             

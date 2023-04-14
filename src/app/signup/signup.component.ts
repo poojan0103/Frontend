@@ -38,7 +38,7 @@ export class SignupComponent {
 
     this.service.signupUser(data.value).subscribe((res) => {
       console.log(res);
-
+        
       if (res.user === undefined) {
         this.toastr.error('Please Check your information ', undefined, {
           timeOut: 2000,
