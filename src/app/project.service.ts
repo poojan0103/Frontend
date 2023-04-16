@@ -44,6 +44,12 @@ export class ProjectService {
   public storeAnswer(data:any):Observable<any>{
     return this.http.post(`${this.baseUrl}/answer`,data)
   }
+  public surveyUser(data:any):Observable<any>{
+    return this.http.post(`${this.baseUrl}/add`,data)
+  }
+  public SurveyUserId(user:any):Observable<any>{
+    return this.http.get(`${this.baseUrl}/add/${user}`)
+  }
   
   setToken(token:string){
     localStorage.setItem('token',token);

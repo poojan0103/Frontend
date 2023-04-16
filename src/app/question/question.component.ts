@@ -75,13 +75,22 @@ export class QuestionComponent implements OnInit {
       id,
     };
     this.sevice.updatePoints(data).subscribe((data) => {});
+    
     this.tostr.success('Survey Completed ', undefined, {
       timeOut: 2000,
       closeButton: true,
       progressBar: true,
     });
-    
-    this.router.navigateByUrl('/dashboard');
+    // const user = localStorage.getItem('id')
+    // const survey = localStorage.getItem('survey')
+    // const surveyUser = {
+    //     user: user,
+    //     survey:survey 
+    //    }
+    //    this.sevice.surveyUser(surveyUser).subscribe((response)=>{
+    //     console.log('Survey response added successfully!', response);
+      this.router.navigateByUrl('/dashboard');
+    //    })
     this.storeAnswer();
     
     
