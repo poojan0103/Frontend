@@ -48,7 +48,7 @@ export class ProjectService {
     return this.http.post(`${this.baseUrl}/add`,data)
   }
   public SurveyUserId(user:any):Observable<any>{
-    return this.http.get(`${this.baseUrl}/add/${user}`)
+    return this.http.get(`${this.baseUrl}/get/${user}`)
   }
   
   setToken(token:string){

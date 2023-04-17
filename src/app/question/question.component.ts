@@ -81,16 +81,16 @@ export class QuestionComponent implements OnInit {
       closeButton: true,
       progressBar: true,
     });
-    // const user = localStorage.getItem('id')
-    // const survey = localStorage.getItem('survey')
-    // const surveyUser = {
-    //     user: user,
-    //     survey:survey 
-    //    }
-    //    this.sevice.surveyUser(surveyUser).subscribe((response)=>{
-    //     console.log('Survey response added successfully!', response);
+    const user = localStorage.getItem('id')
+    const survey = localStorage.getItem('survey')
+    const surveyUser = {
+        user: user,
+        survey:survey 
+       }
+       this.sevice.surveyUser(surveyUser).subscribe((response)=>{
+        console.log('Survey response added successfully!', response);
       this.router.navigateByUrl('/dashboard');
-    //    })
+       })
     this.storeAnswer();
     
     
