@@ -15,12 +15,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getprofiile();
     
-    const completedSurvey = sessionStorage.getItem('completedsurvey');
-  if (completedSurvey !== null) {
-    this.competedsurvey= JSON.parse(completedSurvey);
-  } else {
-    this.competedsurvey = [];
-  }
+  //   const completedSurvey = sessionStorage.getItem('completedsurvey');
+  // if (completedSurvey !== null) {
+  //   this.competedsurvey= JSON.parse(completedSurvey);
+  // } else {
+  //   this.competedsurvey = [];
+  // }
+  // console.log(completedSurvey);
+  
 
     this.listSurvey();
   }
@@ -35,7 +37,7 @@ export class DashboardComponent implements OnInit {
       this.survey = data.result;
 
       // Filter out completed surveys for the current user
-      this.competedsurvey = [];
+     // this.competedsurvey = [];
       this.service.SurveyUserId(user).subscribe((data) => {
         this.competedsurvey = data;
         console.log(this.competedsurvey,"-------------------------");
