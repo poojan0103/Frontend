@@ -13,25 +13,42 @@
 
                             <div class="input-field">
                                 <span class="fa fa-user p-2"></span>
-                                <input type="text" ngModel name="name" placeholder="Name" required >
+                                <input type="text"  name="name" placeholder="Name"  ngModel #name ="ngModel" required>
                             </div>
+                            <div *ngIf= "name.invalid && (name.dirty || name.touched)">
+                                <small id="validTitle" *ngIf= "name.errors?.['required']" class="alert">Name is required</small>
+                    
+                              </div>
                         </div>
                        
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-envelope p-2"></span>
-                                <input type="text" ngModel name="email"  placeholder="Email" required>
+                                <input type="text" ngModel #email="ngModel" name="email"  [pattern]="emailvalideter" placeholder="Email" required email>
                             </div>
+                            <div *ngIf= "email.invalid && (email.dirty || email.touched)">
+                                <small id="validTitle" *ngIf= "email.errors?.['required']" class="alert">email is required</small>
+                    
+                              </div>
+                              <div *ngIf= "email.errors?.['pattern']">
+                                <small id="validTitle"  class="alert">Invalid Email</small>
+                    
+                              </div>
                         </div><div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-lock p-2"></span>
-                                <input [type]="type" ngModel  name="password" placeholder="Password" required>
+                                <input [type]="type" ngModel #password="ngModel" name="password" placeholder="Password" required>
                                 <span (click)="hideshow()" class="fa {{eyeicon}}"></span>
                             </div>
-                        </div><div class="form-group pt-3">
+                            <div *ngIf= "password.invalid && (password.dirty || password.touched)">
+                                <small id="validTitle" *ngIf= "password.errors?.['required']" class="alert">Password is required</small>
+                    
+                              </div>
+                        </div>
+                        <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-user p-2"></span>
-                                <input type="text" ngModel name="gender" placeholder="Gender" required>
+                                <input type="text" ngModel #gender ="ngModel" name="gender" placeholder="Gender" required>
                                 
                                 <!-- <label for="gender" ngModel name="gender" >Choose a gender:</label>
                                 <select name="gender">
@@ -41,12 +58,25 @@
                                 
                                 </select> -->
                             </div>
+                            <div *ngIf= "gender.invalid && (gender.dirty || gender.touched)">
+                                <small id="validTitle" *ngIf= "gender.errors?.['required']" class="alert">Gender is required</small>
+                    
+                              </div>
                         </div>
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-phone p-2"></span>
-                                <input type="text" ngModel name="phone" placeholder="Phone" >
+                                <input type="text" ngModel #phone="ngModel" name="phone" [pattern]="phonevalideter" placeholder="Phone" required>
                             </div>
+                                <div *ngIf= "phone.invalid && (phone.dirty || phone.touched)">
+                                    <small id="validTitle" *ngIf= "phone.errors?.['required']" class="alert">PhoneNumber is required</small>
+                        
+                                </div>
+                                
+                                    <div *ngIf= "phone.errors?.['pattern']">
+                                        <small id="validTitle"  class="alert">Invalid Phone </small>
+                            
+                                      </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="signupUser(signupForm)">Signup</button>
                         <div class="text-center pt-4 text-muted">Already have a acoount? <a id="login" routerLink="/login" >Login</a></div>

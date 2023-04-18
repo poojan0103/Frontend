@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit{
     this.service.loginUser(data.value).subscribe((res) => {
       this.service.setToken(res.token);
           if (res.user === undefined) {
-        this.toastr.error('Invalid Credentails', undefined, {
+        this.toastr.error(res.message, undefined, {
           positionClass: 'toast-top-center',
         });
       } 

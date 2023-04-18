@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
       //   user: user,
       // }
       // const user = localStorage.getItem('id')
-      // debugger
     this.service.listSurvey().subscribe((data) => {
       this.survey = data.result;
 
@@ -42,7 +41,7 @@ export class DashboardComponent implements OnInit {
       this.service.SurveyUserId(user).subscribe((data) => {
         this.competedsurvey = data;
         console.log(this.competedsurvey,"-------------------------");
-        // debugger
+        
         this.survey = this.survey.filter((survey: { _id: any; }) => {
           return !this.competedsurvey.some((completedSurvey) => {
             return completedSurvey.survey._id === survey._id;

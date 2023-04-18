@@ -13,7 +13,8 @@ export class SignupComponent implements OnInit{
   type: string = 'password';
   isText: boolean = false;
   eyeicon: string = 'fa-eye-slash';
-
+  emailvalideter:string = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+  phonevalideter:string = "^[0-9]{10}$"
   constructor(
     private service: ProjectService,
     private router: Router,
@@ -45,8 +46,8 @@ export class SignupComponent implements OnInit{
     this.service.signupUser(data.value).subscribe((res) => {
       console.log(res);
         
-      if (res.user === undefined) {
-        this.toastr.error('Please Check your information ', undefined, {
+      if (!res.user) {
+        this.toastr.error(res.message, undefined, {
           timeOut: 2000,
           closeButton: true,
           progressBar: true,

@@ -51,3 +51,6 @@ input[type='password']{
     margin-left: 20px;
     margin-top: auto;
 }
+small {
+    color: red;
+}
