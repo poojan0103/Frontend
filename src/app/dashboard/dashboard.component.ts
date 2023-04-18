@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
       //   user: user,
       // }
       // const user = localStorage.getItem('id')
+      // debugger
     this.service.listSurvey().subscribe((data) => {
       this.survey = data.result;
 
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
       this.service.SurveyUserId(user).subscribe((data) => {
         this.competedsurvey = data;
         console.log(this.competedsurvey,"-------------------------");
-        
+        // debugger
         this.survey = this.survey.filter((survey: { _id: any; }) => {
           return !this.competedsurvey.some((completedSurvey) => {
             return completedSurvey.survey._id === survey._id;
@@ -71,10 +72,7 @@ export class DashboardComponent implements OnInit {
   navigate(surveyid: any, survey: any) {
    const user = localStorage.getItem('id')
 
-   if (this.competedsurvey.includes(survey)) {
-    alert('you have already completed this survey');
-    return;
-  }
+   
     this.service.isSurveyTaken(user,survey).subscribe((isTaken)=>{
       console.log(isTaken.message);
       // debugger
@@ -98,7 +96,7 @@ export class DashboardComponent implements OnInit {
       //   console.log('Survey response added successfully!', response);
       this.router.navigate(['/question']);
       //  })
-        this.router.navigate(['/question']);
+        // this.router.navigate(['/question']);
       // }
     })
     

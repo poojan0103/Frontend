@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   type: string = 'password';
   isText: boolean = false;
   eyeicon: string = 'fa-eye-slash';
@@ -17,6 +17,11 @@ export class LoginComponent {
     private router: Router,
     private toastr: ToastrService
   ) {}
+  ngOnInit(): void {
+   if(this.service.isLoggedIn()){
+    this.router.navigateByUrl('/dashboard')
+   }
+  }
 
   hideshow() {
     this.isText = !this.isText;

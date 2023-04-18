@@ -23,6 +23,7 @@ import { Auth } from './auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { QuestionComponent } from './question/question.component';
+import { VerifiedComponent } from './verified/verified.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { QuestionComponent } from './question/question.component';
    
     ProfileComponent,
     QuestionComponent,
+    VerifiedComponent,
   
   ],
   imports: [

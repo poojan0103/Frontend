@@ -7,13 +7,15 @@ import { SignupComponent } from './signup/signup.component';
 
 import { ProfileComponent } from './profile/profile.component';
 import { QuestionComponent } from './question/question.component';
+import { VerifiedComponent } from './verified/verified.component';
 
 const routes: Routes = [
-  { path: "signup", component: SignupComponent },
+  { path: "", component: SignupComponent },
   { path: "login", component: LoginComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
   { path: "profile", component: ProfileComponent },
-  { path: "question", component: QuestionComponent }
+  { path: "question", component: QuestionComponent },
+  {path:"verified",component:VerifiedComponent}
 
 ]
 
