@@ -41,12 +41,12 @@ export class DashboardComponent implements OnInit {
     //  this.competedsurvey = [];
       this.service.find(_id).subscribe((data) => {
         
-        this.competedsurvey = data;
-        console.log(this.competedsurvey,"-------------------------");
+         const completedSurveys = data[0].survey;
+        console.log(completedSurveys,"-------------------------");
         
         this.survey = this.survey.filter((survey: { _id: any; }) => {
-          return !this.competedsurvey.some((completedSurvey) => {
-            return completedSurvey.survey._id === survey._id;
+           return !completedSurveys.some((completedSurvey: { _id: any; }) => {
+          return completedSurvey._id === survey._id;
           });
         });
       });
