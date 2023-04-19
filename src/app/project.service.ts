@@ -50,7 +50,15 @@ export class ProjectService {
   public SurveyUserId(user:any):Observable<any>{
     return this.http.get(`${this.baseUrl}/get/${user}`)
   }
-  
+  public User(user:any):Observable<any>{
+    return this.http.get(` ${this.baseUrl}/survey/${user}`)
+  }
+  public addtouser(data:any):Observable<any>{
+    return this.http.post(`${this.baseUrl}/update`,data)
+  }
+  public find(_id:any):Observable<any>{
+    return this.http.get(`${this.baseUrl}/get/${_id}`)
+  }
   setToken(token:string){
     localStorage.setItem('token',token);
   }

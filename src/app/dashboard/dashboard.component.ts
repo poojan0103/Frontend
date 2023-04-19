@@ -28,7 +28,8 @@ export class DashboardComponent implements OnInit {
   }
   listSurvey() {
     
-      const user = localStorage.getItem('id');
+      // const user = localStorage.getItem('id');
+      const _id = localStorage.getItem('id')
       // const surveyUser = {
       //   user: user,
       // }
@@ -37,8 +38,9 @@ export class DashboardComponent implements OnInit {
       this.survey = data.result;
 
       // Filter out completed surveys for the current user
-     // this.competedsurvey = [];
-      this.service.SurveyUserId(user).subscribe((data) => {
+    //  this.competedsurvey = [];
+      this.service.find(_id).subscribe((data) => {
+        
         this.competedsurvey = data;
         console.log(this.competedsurvey,"-------------------------");
         

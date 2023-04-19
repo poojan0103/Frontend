@@ -42,8 +42,15 @@ export class SignupComponent implements OnInit{
 
       return;
     }
-
-    this.service.signupUser(data.value).subscribe((res) => {
+    const user ={
+      name:data.value.name,
+      email:data.value.email,
+      password:data.value.password,
+      gender:data.value.gender,
+      phone:data.value.phone
+      
+    }
+    this.service.signupUser(user).subscribe((res) => {
       console.log(res);
         
       if (!res.user) {

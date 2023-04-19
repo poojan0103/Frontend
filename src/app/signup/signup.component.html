@@ -48,15 +48,15 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-user p-2"></span>
-                                <input type="text" ngModel #gender ="ngModel" name="gender" placeholder="Gender" required>
+                                <!-- <input type="text" ngModel #gender ="ngModel" name="gender" placeholder="Gender" required> -->
                                 
-                                <!-- <label for="gender" ngModel name="gender" >Choose a gender:</label>
-                                <select name="gender">
+                                <label for="gender" ngModel #gender ="ngModel" name="gender" placeholder="Gender" required >Choose a gender:</label>
+                                <select name="gender" ngModel #gender ="ngModel" name="gender" required>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
                                 
-                                </select> -->
+                                </select>
                             </div>
                             <div *ngIf= "gender.invalid && (gender.dirty || gender.touched)">
                                 <small id="validTitle" *ngIf= "gender.errors?.['required']" class="alert">Gender is required</small>

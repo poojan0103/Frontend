@@ -91,9 +91,18 @@ export class QuestionComponent implements OnInit {
         console.log('Survey response added successfully!', response);
       this.router.navigateByUrl('/dashboard');
        })
+
     this.storeAnswer();
     
-    
+       const add = {
+         _id:user,
+         survey:survey,
+       }
+       console.log(add);
+       
+       this.sevice.addtouser(add).subscribe((response)=>{
+        console.log('Survey response added successfully!', response);
+       })
     localStorage.removeItem('currentPage');
   }
   isValid() {
