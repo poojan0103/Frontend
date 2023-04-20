@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import {CookieService} from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class ProjectService {
   result = {}
  
   baseUrl = 'http://localhost:3000'
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private cookieService:CookieService) { }
   public signupUser(data:any):Observable<any>{
     return this.http.post(`${this.baseUrl}/signup`,data);
   }
@@ -59,8 +60,15 @@ export class ProjectService {
   public find(_id:any):Observable<any>{
     return this.http.get(`${this.baseUrl}/get/${_id}`)
   }
+  setcookie(token:string){
+    this.cookieService.set('token',token)
+  }
+  getcookie(){
+    this.cookieService.get('token')
+  }
   setToken(token:string){
     localStorage.setItem('token',token);
+    
   }
   getToken(){
     return localStorage.getItem('token')
@@ -70,6 +78,7 @@ export class ProjectService {
   }
   getUserPayload(){
     var token=this.getToken()
+    
     if(token){
       var userPayload=atob(token.split('.')[1])
       return JSON.parse(
