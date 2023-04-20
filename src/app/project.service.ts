@@ -90,11 +90,9 @@ export class ProjectService {
     }
     return null;
   }
-  deleteCookie(name:any) {
-    this.setToken(name);
-  }
+ 
   deleteToken(){
-    this.deleteCookie('token')
+    document.cookie = "token=; expires=thu,  20 Apr 2023 10:26:00 UTC; path=/;";
     //localStorage.removeItem('token')
   }
   getUserPayload(){
