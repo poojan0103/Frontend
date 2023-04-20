@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import {CookieService} from 'ngx-cookie-service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class ProjectService {
   result = {}
  
   baseUrl = 'http://localhost:3000'
-  constructor(private http:HttpClient,private cookieService:CookieService) { }
+  constructor(private http:HttpClient) { }
   public signupUser(data:any):Observable<any>{
     return this.http.post(`${this.baseUrl}/signup`,data);
   }
@@ -60,21 +60,42 @@ export class ProjectService {
   public find(_id:any):Observable<any>{
     return this.http.get(`${this.baseUrl}/get/${_id}`)
   }
-  setcookie(token:string){
-    this.cookieService.set('token',token)
-  }
-  getcookie(){
-    this.cookieService.get('token')
-  }
+ 
   setToken(token:string){
-    localStorage.setItem('token',token);
+    // localStorage.setItem('token',token);
+    document.cookie = `token=${token}; path=/`;
     
   }
   getToken(){
-    return localStorage.getItem('token')
+    // return localStorage.getItem('token')
+    const name = 'token=';
+
+    const cookieArr = document.cookie.split(';');
+    
+    
+    for (let i = 0; i < cookieArr.length; i++) {
+    
+      let cookie = cookieArr[i];
+      
+      
+      while (cookie.charAt(0) == ' ') {
+      
+        cookie = cookie.substring(1);
+       
+        
+      }
+      if (cookie.indexOf(name) == 0) {
+        return cookie.substring(name.length, cookie.length);
+      }
+    }
+    return null;
+  }
+  deleteCookie(name:any) {
+    this.setToken(name);
   }
   deleteToken(){
-    localStorage.removeItem('token')
+    this.deleteCookie('token')
+    //localStorage.removeItem('token')
   }
   getUserPayload(){
     var token=this.getToken()

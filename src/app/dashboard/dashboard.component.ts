@@ -15,30 +15,20 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getprofiile();
     
-  //   const completedSurvey = sessionStorage.getItem('completedsurvey');
-  // if (completedSurvey !== null) {
-  //   this.competedsurvey= JSON.parse(completedSurvey);
-  // } else {
-  //   this.competedsurvey = [];
-  // }
-  // console.log(completedSurvey);
+
   
 
     this.listSurvey();
   }
   listSurvey() {
     
-      // const user = localStorage.getItem('id');
+     
       const _id = localStorage.getItem('id')
-      // const surveyUser = {
-      //   user: user,
-      // }
-      // const user = localStorage.getItem('id')
+     
     this.service.listSurvey().subscribe((data) => {
       this.survey = data.result;
 
-      // Filter out completed surveys for the current user
-    //  this.competedsurvey = [];
+    
       this.service.find(_id).subscribe((data) => {
         
          const completedSurveys = data[0].survey;
@@ -52,23 +42,7 @@ export class DashboardComponent implements OnInit {
       });
     });
       
-      // this.service.listSurvey().subscribe((data) => {
-      //   const allSurveys = data.result;
-    
-      //   // Filter out completed surveys
-      //   this.survey = allSurveys.filter((survey: any) => {
-      //     return !this.competedsurvey.includes(survey._id)
-      //   });
-
-      //   console.log(this.competedsurvey);
-      //   sessionStorage.setItem('completedsurvey', JSON.stringify(this.competedsurvey));
-      // });
-    
-    
-    // this.service.listSurvey().subscribe((data) => {
-    //   this.survey = data.result;
-      
-    // });
+     
   }
   navigate(surveyid: any, survey: any) {
    const user = localStorage.getItem('id')
@@ -76,29 +50,13 @@ export class DashboardComponent implements OnInit {
    
     this.service.isSurveyTaken(user,survey).subscribe((isTaken)=>{
       console.log(isTaken.message);
-      // debugger
-      // if(isTaken.message == 'survey already taken'){
-      //   alert('you give this survey')
-      //   this.competedsurvey.push(survey);
-      //   sessionStorage.setItem('completedsurvey', JSON.stringify(this.competedsurvey));
-      //   this.listSurvey()
-
-  
-      // }
-      // else{
+    
         
         localStorage.setItem('surveyid', surveyid);
        localStorage.setItem('survey', survey);
-      //  const surveyUser = {
-      //   user: user,
-      //   survey:survey 
-      //  }
-      //  this.service.surveyUser(surveyUser).subscribe((response)=>{
-      //   console.log('Survey response added successfully!', response);
+    
       this.router.navigate(['/question']);
-      //  })
-        // this.router.navigate(['/question']);
-      // }
+    
     })
     
     
