@@ -62,8 +62,9 @@ export class ProjectService {
   }
  
   setToken(token:string){
+    const expirestime = new Date(Date.now()+2*60*60*1000).toUTCString();
     // localStorage.setItem('token',token);
-    document.cookie = `token=${token}; path=/`;
+    document.cookie = `token=${token}; path=/;expries=${expirestime}`;
     
   }
   getToken(){
@@ -110,7 +111,7 @@ export class ProjectService {
   isLoggedIn(){
     var userPayload=this.getUserPayload();
     if(userPayload)
-    return userPayload.exp>Date.now()/1000
+    return userPayload.exp>Date.now()/1000  
     else
     return false;
   }
