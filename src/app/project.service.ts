@@ -10,14 +10,14 @@ export class ProjectService {
 
   result = {}
  
-  baseUrl = 'http://localhost:3000'
+  baseUrl = 'https://survey-app-84y2.onrender.com'
   constructor(private http:HttpClient) { }
   public signupUser(data:any):Observable<any>{
     return this.http.post(`${this.baseUrl}/signup`,data);
   }
   
   public loginUser(data:any):Observable<any>{
-    return this.http.post(` ${this.baseUrl}/login`,data)
+    return this.http.post(` ${this.baseUrl}/login`,data )
   }
   public listSurvey():Observable<any>{
     return this.http.get(`${this.baseUrl}/survey`)
