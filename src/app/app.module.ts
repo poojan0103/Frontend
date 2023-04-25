@@ -58,7 +58,10 @@ import { VerifiedComponent } from './verified/verified.component';
     provide:HTTP_INTERCEPTORS ,
     useClass: Auth,
     multi:true 
-  },{provide:LocationStrategy,useClass:HashLocationStrategy},AuthGuard],
+  },
+  //changes 
+  {provide:LocationStrategy,useClass:HashLocationStrategy}
+  ,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

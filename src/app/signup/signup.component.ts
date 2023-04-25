@@ -53,12 +53,14 @@ export class SignupComponent implements OnInit{
     this.service.signupUser(user).subscribe((res) => {
      
         
-      if (!res.user) {
+      if (res.user === undefined) {
         this.toastr.error(res.message, undefined, {
           timeOut: 2000,
           closeButton: true,
           progressBar: true,
         });
+        console.log(res.message);
+        
       } else {
         this.router.navigateByUrl('/login')
         this.toastr.success(
