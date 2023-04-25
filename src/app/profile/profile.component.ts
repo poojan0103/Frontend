@@ -27,20 +27,20 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  redem() {
-    const points = localStorage.getItem('surveyid');
+  // redem() {
+  //   const points = localStorage.getItem('surveyid');
 
-    const id = localStorage.getItem('id');
+  //   const id = localStorage.getItem('id');
 
-    const data = {
-      points,
-      id,
-    };
-    const result = confirm('are you sure to redeem points ?');
-    if (result) {
-      this.service.redemPoints(data).subscribe((data) => {
-        alert('Points Will redeem Sucessfully!');
-      });
-    }
-  }
+  //   const data = {
+  //     points,
+  //     id,
+  //   };
+  //   const result = confirm('are you sure to redeem points ?');
+  //   if (result) {
+  //     this.service.redemPoints(data).subscribe((data) => {
+  //       alert('Points Will redeem Sucessfully!');
+  //     });
+  //   }
+  // }
 }
