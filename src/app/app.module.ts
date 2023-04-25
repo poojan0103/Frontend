@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card'
-
+import{HashLocationStrategy,LocationStrategy} from '@angular/common'
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -57,8 +57,8 @@ import { VerifiedComponent } from './verified/verified.component';
   providers: [{
     provide:HTTP_INTERCEPTORS ,
     useClass: Auth,
-    multi:true
-  },AuthGuard],
+    multi:true 
+  },{provide:LocationStrategy,useClass:HashLocationStrategy},AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
