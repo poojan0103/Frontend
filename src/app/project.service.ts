@@ -64,7 +64,7 @@ export class ProjectService {
   setToken(token:string){
     const expirestime = new Date(Date.now()+2*60*60*1000).toUTCString();
     // localStorage.setItem('token',token);
-    document.cookie = `token=${token}; path=/;expries=${expirestime};secure;HttpOnl`;
+    document.cookie = `token=${token}; path=/;expries=${expirestime};secure;HttpOnly`;
     
   }
   getToken(){
