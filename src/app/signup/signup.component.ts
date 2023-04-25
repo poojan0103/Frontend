@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit{
       
     }
     this.service.signupUser(user).subscribe((res) => {
-      console.log(res);
+     
         
       if (!res.user) {
         this.toastr.error(res.message, undefined, {

@@ -93,10 +93,10 @@ export class QuestionComponent implements OnInit {
          _id:user,
          survey:survey,
        }
-       console.log(add);
+     
        
        this.sevice.addtouser(add).subscribe((response)=>{
-        console.log('Survey response added successfully!', response);
+        
        })
     localStorage.removeItem('currentPage');
   }

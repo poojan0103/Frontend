@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
       this.service.find(_id).subscribe((data) => {
         
          const completedSurveys = data[0].survey;
-        console.log(completedSurveys,"-------------------------");
+      
         
         this.survey = this.survey.filter((survey: { _id: any; }) => {
            return !completedSurveys.some((completedSurvey: { _id: any; }) => {
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
 
    
     this.service.isSurveyTaken(user,survey).subscribe((isTaken)=>{
-      console.log(isTaken.message);
+     
     
         
         localStorage.setItem('surveyid', surveyid);
